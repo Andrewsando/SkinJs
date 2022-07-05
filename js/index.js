@@ -1,17 +1,33 @@
-let numero1, numero2;
-do {
-  numero1 = prompt("Ingrese un número para sumar").toUpperCase();
-  console.log(numero1)
-  if (numero1 !== "ESC") {
-    numero1 = parseFloat(numero1);
-    alert("Hola, el número ingresado es " + numero1);
-    numero2 = prompt("Ingrese un número para sumar").toUpperCase();
-    
-    if (numero2 !== "ESC") {
-      numero2 = parseFloat(numero2);
-      alert("Hola, el número ingresado es " + numero2);
-      let resultado = numero1 + numero2;
-      alert("El resultado es " + resultado);
-    }
-  }
-} while (numero1 !== "ESC" || numero2 !== "ESC");
+let nombre = prompt("Por favor ingresa tu nombre");
+alert(
+  `Hola ${nombre}, Por medio de la siguiente encuesta te diremos cuál es el producto que mejor se te acomoda!`
+);
+let tipoPiel = prompt(
+  `${nombre}, ¿Qué tipo de piel tienes: seca, mixta o grasa?`
+);
+function Piel(){
+while (tipoPiel != "seca" && tipoPiel != "mixta" && tipoPiel != "grasa") {
+ 
+  tipoPiel = prompt("¡Vuelvelo a intentar!");
+}
+switch (tipoPiel) {
+  case "seca":
+    alert(
+      `Si tu piel es seca, te recomendamos el Face Oil de la marca Skinfresh, el cual te ayudará a mejorar la textura de tu piel y evitar los signos de la edad`
+    );
+    break;
+  case "mixta":
+    alert(
+      `Si tu piel es mixta, te recomendamos el Face keeping fresh de la marca Skinfresh, el cual te ayudará a mantener la humectación natural de la piel`
+    );
+    break;
+  case "grasa":
+    alert(
+      `Si tu piel es grasa, te recomendamos el Face Dry spray de la marca Skinfresh, el cual te ayudará a conservar la lozanía de tu piel y controlar el exceso de grasa`
+    );
+    break;
+  default:
+    alert(`Lo sentimos ${nombre}, debes ingresar una de las opciones que te dimos`);
+}
+}
+Piel()
