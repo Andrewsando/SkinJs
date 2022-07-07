@@ -1,3 +1,44 @@
+let pieles = {
+  seca: {
+    productos: [
+      {
+        nombre: "Face Oil",
+        precio: "USD $25",
+      },
+      {
+        nombre: "Natural Oil",
+        precio: "USD $30",
+      },
+    ],
+  },
+
+  mixta: {
+    productos: [
+      {
+        nombre: "Fixed Textured",
+        precio: "USD $50",
+      },
+      {
+        nombre: "Face Gel",
+        precio: "USD $42",
+      },
+    ],
+  },
+
+  grasa: {
+    productos: [
+      {
+        nombre: "Killing Oil",
+        precio: "USD $30",
+      },
+      {
+        nombre: "Oil cleaner",
+        precio: "USD $48",
+      },
+    ],
+  },
+};
+let carrito = []
 let nombre = prompt("Por favor ingresa tu nombre");
 alert(
   `Hola ${nombre}, Por medio de la siguiente encuesta te diremos cuál es el producto que mejor se te acomoda!`
@@ -5,29 +46,50 @@ alert(
 let tipoPiel = prompt(
   `${nombre}, ¿Qué tipo de piel tienes: seca, mixta o grasa?`
 );
-function Piel(){
-while (tipoPiel != "seca" && tipoPiel != "mixta" && tipoPiel != "grasa") {
- 
-  tipoPiel = prompt("¡Vuelvelo a intentar!");
+function Piel() {
+  while (tipoPiel != "seca" && tipoPiel != "mixta" && tipoPiel != "grasa") {
+    tipoPiel = prompt("¡Vuelvelo a intentar!");
+  }
+  let respuesta = ""
+  switch (tipoPiel) {
+    case "seca":
+      let productosPielSeca = "";
+      let prodSeca = pieles.seca.productos;
+      for (let producto of prodSeca) {
+        productosPielSeca += producto.nombre + " " + producto.precio + " ";
+      }
+      respuesta = prompt(
+        `Si tu piel es seca, te recomendamos los ${productosPielSeca}, los cuales te ayudarán a mejorar la textura de tu piel y evitar los signos de la edad, deseas agregarlos al carrito? (si/no)`
+      );
+      break;
+    case "mixta":
+      let productosPielMixta = "";
+      let prodMixta = pieles.mixta.productos;
+      for (let producto of prodMixta) {
+        productosPielMixta += producto.nombre + " " + producto.precio + " ";
+      }
+       respuesta = prompt(
+        `Si tu piel es mixta, te recomendamos los ${productosPielMixta}, los cuales te ayudarán a mantener la humectación natural de la piel, deseas agregarlos al carrito? (si/no)`
+      );
+      break;
+    case "grasa":
+      let productosPielgrasa = "";
+      let prodgrasa = pieles.grasa.productos;
+      for (let producto of prodgrasa) {
+        productosPielgrasa += producto.nombre + " " + producto.precio + " ";
+      }
+       respuesta = prompt(
+        `Si tu piel es grasa, te recomendamos los ${productosPielgrasa}, los cuales te ayudarán a conservar la lozanía de tu piel y controlar el exceso de grasa, deseas agregarlos al carrito? (si/no)`
+      );
+      break;
+    default:
+      alert(
+        `Lo sentimos ${nombre}, debes ingresar una de las opciones que te dimos`
+      );
+  }
+  if (respuesta == "si") {
+      carrito = carrito.concat(pieles[tipoPiel].productos)
+  }
+  alert(`Tienes ${carrito.length} productos asigandos a tu carrito de compras`)
 }
-switch (tipoPiel) {
-  case "seca":
-    alert(
-      `Si tu piel es seca, te recomendamos el Face Oil de la marca Skinfresh, el cual te ayudará a mejorar la textura de tu piel y evitar los signos de la edad`
-    );
-    break;
-  case "mixta":
-    alert(
-      `Si tu piel es mixta, te recomendamos el Face keeping fresh de la marca Skinfresh, el cual te ayudará a mantener la humectación natural de la piel`
-    );
-    break;
-  case "grasa":
-    alert(
-      `Si tu piel es grasa, te recomendamos el Face Dry spray de la marca Skinfresh, el cual te ayudará a conservar la lozanía de tu piel y controlar el exceso de grasa`
-    );
-    break;
-  default:
-    alert(`Lo sentimos ${nombre}, debes ingresar una de las opciones que te dimos`);
-}
-}
-Piel()
+Piel();
